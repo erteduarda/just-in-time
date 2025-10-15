@@ -1,0 +1,28 @@
+services:
+  api-gateway:
+    build: ./apps/api-gateway
+    environment:
+      PORT: 3000
+      USERS_URL: http://users-service:4001
+      ORDERS_URL: http://orders-service:4002
+    ports: ["3000:3000"]
+    depends_on: [users-service, orders-service]
+
+  users-service:
+    build: ./apps/users-service
+    environment:
+      PORT: 4001
+    ports: ["4001:4001"]
+
+  orders-service:
+    build: ./apps/orders-service
+    environment:
+      PORT: 4002
+    ports: ["4002:4002"]
+
+  web:
+    build: ./apps/web
+    ports: ["3001:3000"]
+    environment:
+      NEXT_PUBLIC_API_BASE: http://api-gateway:3000
+    depends_on: [api-gateway]
