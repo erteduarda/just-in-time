@@ -1,0 +1,17 @@
+{
+  "name": "api-gateway",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@config/env": "workspace:*",
+    "@fastify/http-proxy": "^9.0.0",
+    "fastify": "^4.28.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}
